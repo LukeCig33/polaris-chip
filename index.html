@@ -18,6 +18,13 @@
     }
     polaris-chip {
       margin: 16px;
+      --polaris-chip-background-color: azure;
+    }
+    a{
+      margin: 16px;
+      color: red;
+      background-color: azure;
+      padding: 50px;
     }
   </style>
   <title>polaris-chip / my-card</title>
@@ -31,8 +38,34 @@
   <polaris-chip title="Sports are the only thing that matter"></polaris-chip>
   <polaris-chip title="Grants and donations"></polaris-chip>
 
+  <a href="https://psu.edu/" target="_blank">PSU</a>
+
   <h1>my-card</h1>
-  <my-card></my-card>
+  <my-card image="https://receptionperception.com/wp-content/uploads/2023/05/george-pickens.jpg" 
+  title="George Pickens" 
+  description="George Pickens is a wide receiver for the Pittsburgh Steelers. In the 2024 seaon he recorded 59 receptions, 900 yards, and 3 touchdowns."
+  link="https://hax.psu.edu/"></my-card>
+
+  <my-card image="https://www.bostonherald.com/wp-content/uploads/2020/01/patsms029.jpg?w=812" 
+  title="Tom Brady" 
+  description="7-time Super Bowl champion, and ruined the prime years of the Steelers. Considered the GOAT."
+  link="https://hax.psu.edu/"></my-card>
+
+  <my-card image="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/rockcms/2024-11/saquon-barkley-play-zz-241104-410a7f.jpg"
+  title="Saquon Barkley"
+  description="Saquon Barkley is a running back for the Philadelphia Eagles and considered possibly the best in the game right now. Also considered as one of Penn State's best running backs of all time"
+  ink="https://hax.psu.edu/"></my-card>
+
+  <my-card image="https://atozsports.com/.image/t_share/MjAyMTc1MTc4NzUzNDUxMDc2/usatsi_21884581.jpg"
+  title="T.J. Watt"
+  description="T.J. Watt is a linebacker for the Pittsburgh Steelers. Watt has won 1 DPOY award (sould be at least 1 more) and also shares the single season sack record."
+  link="https://hax.psu.edu/"></my-card>
+
+  <my-card image="https://npr.brightspotcdn.com/5a/3c/1de316984b1e8812825ff4f72808/ap23023847028931.jpg"
+  title="Patrick Mahomes"
+  description="Patrick Mahomes is a quarterback for the Kansas City Chiefs. Since becoming a starter in 2018 Mahomes has played in every single AFC championship game. He already has 3 Superbowls and 2 MVPS. There is some serious talk that he could be the actual GOAT."
+  link="https://hax.psu.edu"></my-card>
+
 
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
