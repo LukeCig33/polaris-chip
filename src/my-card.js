@@ -26,14 +26,14 @@ export class MyCard extends LitElement {
         display: block;
       }
       .card{
-        background-color: gray;
+        background-color: var(--my-card-fancy-bg, gray);
         width: 350px;
         border: 3px solid black;
         padding: 8px;
         margin: 8px;
       }
-      .fancy{
-        background-color: yellow;
+      .card[fancy] {
+        background-color: var(--my-card-fancy-bg, yellow); 
       }
       #card-list {
         display: flex;
@@ -79,12 +79,12 @@ export class MyCard extends LitElement {
 
   render() {
     return html`
-      <div class="card">
-        <img class="card-image" src="${this.image}" alt="${this.title}" />
+      <div class="card" ?fancy="${this.hasAttribute('fancy')}">
         <div class="card-text">
           <h1 class="card-title">${this.title}</h1>
+          <img class="card-image" src="${this.image}" alt="${this.title}" />
           <div class="card-body">
-            <p>${this.description}</p>
+            <slot></slot>
             <button id="details" @click="${() => window.location.href = this.link}">Details</button>
           </div>
         </div>
@@ -96,7 +96,6 @@ export class MyCard extends LitElement {
     return {
       title: { type: String },
       image: { type: String },
-      description: { type: String },
       link: { type: String }
     };
   }
