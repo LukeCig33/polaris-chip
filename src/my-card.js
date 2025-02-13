@@ -18,6 +18,7 @@ export class MyCard extends LitElement {
     this.image = "https://via.placeholder.com/150";
     this.description = "This is a card";
     this.link = "#";
+    this.fancy = false;
   }
 
   static get styles() {
@@ -25,15 +26,20 @@ export class MyCard extends LitElement {
       :host {
         display: block;
       }
+      :host([fancy]) .card{
+        background-color: blue;
+        color: white;
+      }
+      .card.toggled {
+        background-color: red;
+        color: blue;
+      }
       .card{
-        background-color: var(--my-card-fancy-bg, gray);
+        background-color: gray;
         width: 350px;
         border: 3px solid black;
         padding: 8px;
         margin: 8px;
-      }
-      .card[fancy] {
-        background-color: var(--my-card-fancy-bg, yellow); 
       }
       #card-list {
         display: flex;
@@ -63,7 +69,7 @@ export class MyCard extends LitElement {
         height: 300px; 
         display: block;
         margin: 10px auto;
-        
+        border: 3px solid black;
       }
       .card-text {
         margin: 0px;
@@ -74,8 +80,38 @@ export class MyCard extends LitElement {
         margin: 10px;
         text-align: center;
       }
+      details summary {
+        text-align: left;
+        font-size: 20px;
+        padding: 8px 0;
+      }
+
+      details[open] summary {
+        font-weight: bold;
+      }
+      
+      details div {
+        border: 2px solid black;
+        text-align: left;
+        padding: 8px;
+        height: 70px;
+        overflow: auto;
+      }
     `;
   }
+
+  
+
+    // put this anywhere on the MyCard class; just above render() is probably good
+    openChanged(e) {
+      console.log(e.newState);
+      if (e.newState === "open") {
+        this.fancy = true;
+      }
+      else {
+        this.fancy = false;
+      }
+    }
 
   render() {
     return html`
@@ -84,8 +120,15 @@ export class MyCard extends LitElement {
           <h1 class="card-title">${this.title}</h1>
           <img class="card-image" src="${this.image}" alt="${this.title}" />
           <div class="card-body">
-            <slot></slot>
+            <!-- put this in your render method where you had details -->
+            <details ?open="${this.fancy}" @toggle="${this.openChanged}">
+            <summary>Description</summary>
+            <div>
+              <slot>${this.description}</slot>
+            </div>
             <button id="details" @click="${() => window.location.href = this.link}">Details</button>
+          </details>
+            <slot></slot>
           </div>
         </div>
       </div>
@@ -94,6 +137,7 @@ export class MyCard extends LitElement {
 
   static get properties() {
     return {
+      fancy: { type: Boolean, reflect: true},
       title: { type: String },
       image: { type: String },
       link: { type: String }
